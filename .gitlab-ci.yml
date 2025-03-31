@@ -5,3 +5,20 @@ run_tests:
     - apt-get install make -y
   script:
     - make test
+
+build_image:
+  image: docker:28.0.4-cli
+  services:
+    - docker:28.0.4-dind
+
+  variables:
+    IMAGE_NAME: gideontee/gitlab-demo
+    IMAGE_TAG: flask-app-v1
+    DOCKER_TLS_CERTDIR: "/certs"
+
+  before_script:
+    - docker login -u $DOCKER_USER -p $DOCKER_PASS
+
+  script:
+    - docker build -t $IMAGE_NAME:$IMAGE_TAG build/Dockerfile
+    - docker push $IMAGE_NAME:$IMAGE_TAG
