@@ -1,0 +1,30 @@
+#version: '3.8'
+
+services:
+  gitlab-server:
+    image: 'gitlab/gitlab-ce'
+    container_name: 'gitlab-container'
+    environment:
+      GITLAB_ROOT_USERNAME: 'root'
+      GITLAB_ROOT_PASSWORD: 'Gideon@777'
+      GITLAB_OMNIBUS_CONFIG: |
+        external_url 'http://localhost:8000'
+        nginx['listen_port'] = 8000
+
+    ports:
+      - '8000:8000'
+
+    volumes:
+      - gitlab_config:/etc/gitlab
+      - gitlab_data:/var/opt/gitlab
+      - gitlab_logs:/var/log/gitlab
+
+
+
+volumes:
+  gitlab_config:
+    external: true
+  gitlab_data:
+    external: true
+  gitlab_logs:
+    external: true
