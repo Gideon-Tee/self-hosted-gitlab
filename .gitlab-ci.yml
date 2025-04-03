@@ -23,10 +23,10 @@ build_image:
   services:
     - name: docker:28.0.4-dind
       alias: docker
-
+      command: ["--tls=false", "--registry-mirror=https://registry-1.docker.io"]
   variables:
     DOCKER_TLS_CERTDIR: ""
-    DOCKER_HOST: unix:///var/run/docker.sock  # Use host Docker
+    DOCKER_HOST: tcp://docker:2375
 
   before_script:
     - docker login -u $DOCKER_USER -p $DOCKER_PASS

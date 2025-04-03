@@ -25,9 +25,9 @@ services:
     privileged: true
     volumes:
       - ./gitlab-runner-config:/etc/gitlab-runner
-      - /var/run/docker.sock:/var/run/docker.sock
+#      - /var/run/docker.sock:/var/run/docker.sock
     environment:
-      - DOCKER_HOST=unix:///var/run/docker.sock
+      - DOCKER_HOST=tcp://docker:2375
 
 volumes:
   gitlab_config:
@@ -38,3 +38,4 @@ volumes:
     external: true
   gitlab-runner-config:
     external: true
+
