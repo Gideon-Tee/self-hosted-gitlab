@@ -22,8 +22,20 @@ services:
   gitlab-runner:
     image: gitlab/gitlab-runner:alpine
     container_name: gitlab-runner
+    privileged: true # required for dind
     volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
+      - gitlab-runner-config:/etc/gitlab-runner
+    networks:
+      - gitlab-network
+
+  dind:
+    image: docker:28.0.4-dind
+    container_name: dind
+    privileged: true
+    environment:
+      - DOCKER_TLS_CERTDIR=''
+    networks:
+      - gitlab-network
 
 volumes:
   gitlab_config:
@@ -32,3 +44,11 @@ volumes:
     external: true
   gitlab_logs:
     external: true
+  gitlab-runner-config:
+    external: true
+
+
+
+networks:
+  gitlab-network:
+    driver: bridge
