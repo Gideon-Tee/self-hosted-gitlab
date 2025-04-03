@@ -25,7 +25,6 @@ build_image:
 #      alias: docker
 
   variables:
-    DOCKER_TLS_CERTDIR: "" # Disable TLS
     DOCKER_HOST: unix:///var/run/docker.sock  # Use host Docker
 
   before_script:

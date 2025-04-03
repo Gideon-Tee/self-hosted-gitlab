@@ -22,7 +22,7 @@ services:
   gitlab-runner:
     image: 'gitlab/gitlab-runner:alpine'
     container_name: 'gitlab-runner'
-    network_mode: 'host'
+    privileged: true
     volumes:
       - ./gitlab-runner-config:/etc/gitlab-runner
       - /var/run/docker.sock:/var/run/docker.sock
