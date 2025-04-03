@@ -25,6 +25,7 @@ build_image:
 
   variables:
     DOCKER_TLS_CERTDIR: "/certs"
+    DOCKER_HOST: tcp://docker:2375 # tell the docker cli where to find the daemon
 
   before_script:
     - docker login -u $DOCKER_USER -p $DOCKER_PASS

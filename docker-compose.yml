@@ -19,7 +19,11 @@ services:
       - gitlab_data:/var/opt/gitlab
       - gitlab_logs:/var/log/gitlab
 
-
+  gitlab-runner:
+    image: gitlab/gitlab-runner:alpine
+    container_name: gitlab-runner
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
 
 volumes:
   gitlab_config:
