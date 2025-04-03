@@ -20,22 +20,14 @@ services:
       - gitlab_logs:/var/log/gitlab
 
   gitlab-runner:
-    image: gitlab/gitlab-runner:alpine
-    container_name: gitlab-runner
-    privileged: true # required for dind
+    image: 'gitlab/gitlab-runner:alpine'
+    container_name: 'gitlab-runner'
+    network_mode: 'host'
     volumes:
-      - gitlab-runner-config:/etc/gitlab-runner
-    networks:
-      - gitlab-network
-
-  dind:
-    image: docker:28.0.4-dind
-    container_name: dind
-    privileged: true
+      - ./gitlab-runner-config:/etc/gitlab-runner
+      - /var/run/docker.sock:/var/run/docker.sock
     environment:
-      - DOCKER_TLS_CERTDIR=''
-    networks:
-      - gitlab-network
+      - DOCKER_HOST=unix:///var/run/docker.sock
 
 volumes:
   gitlab_config:
@@ -46,9 +38,3 @@ volumes:
     external: true
   gitlab-runner-config:
     external: true
-
-
-
-networks:
-  gitlab-network:
-    driver: bridge
