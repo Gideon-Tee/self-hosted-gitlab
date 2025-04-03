@@ -20,11 +20,12 @@ run_tests:
 build_image:
   image: docker:28.0.4-cli
   stage: build
-#  services:
-#    - name: docker:28.0.4-dind
-#      alias: docker
+  services:
+    - name: docker:28.0.4-dind
+      alias: docker
 
   variables:
+    DOCKER_TLS_CERTDIR: ""
     DOCKER_HOST: unix:///var/run/docker.sock  # Use host Docker
 
   before_script:
