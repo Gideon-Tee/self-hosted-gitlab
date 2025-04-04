@@ -18,7 +18,7 @@ run_tests:
     - make test
 
 build_image:
-  image: docker:28.0.4-cli
+  image: docker:28.0.4-dind
   stage: build
   before_script:
     - echo "$DOCKER_PASS" | docker login -u $DOCKER_USER --password-stdin
