@@ -21,7 +21,7 @@ build_image:
   tags:
     - local machine
 #  image: docker:28.0.4-cli
-#  stage: build
+  stage: build
 #  services:
 #    - docker:28.0.4-dind
 #  variables:
