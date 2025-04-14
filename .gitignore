@@ -107,3 +107,5 @@ tests/package*.json
 .pytest_cache
 gitlab/
 gitlab-runner-config
+builds/
+.idea/
