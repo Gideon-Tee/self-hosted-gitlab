@@ -129,7 +129,7 @@ networks:
   gitlab-in-docker:
     name: gitlab-in-docker
     driver: bridge```
-
+```
 ---
 
 ## 🧩 GitLab Setup
