@@ -57,14 +57,13 @@ A complete containerized GitLab CE solution with integrated Docker-based GitLab 
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/your-repo/gitlab-docker.git
-cd gitlab-docker
+git clone https://github.com/gideon-tee/self-hosted-gitlab.git
+cd self-hosted-docker
 ```
 
 ### 2. Configure the Environment
 
 ```bash
-cp .env.example .env
 nano .env
 ```
 
@@ -73,7 +72,7 @@ nano .env
 ```ini
 # GitLab Configuration
 GITLAB_ROOT_PASSWORD=YourSecurePassword123!
-EXTERNAL_URL=https://gitlab.yourdomain.com
+EXTERNAL_URL=https://gitlab.yourdomain.com # or http://localhost:8000
 LETS_ENCRYPT_EMAIL=admin@yourdomain.com
 
 # Runner Configuration
